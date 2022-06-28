@@ -10,6 +10,9 @@ spring:
   application:
     name: user-service
 
+server:
+  port: 6262
+
 eureka:
   client:
     service-url:
