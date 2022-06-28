@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/restaurant-service
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+  application:
+    name: restaurant-service
+
+server:
+  port: 6060
+
+eureka:
+  client:
+    service-url:
+      default-zone: ${EUREKA.URI:http://localhost:8761/eureka}
+    instance:
+      prefer-ip-address: true
