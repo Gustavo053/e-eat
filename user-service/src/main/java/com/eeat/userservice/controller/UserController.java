@@ -4,6 +4,7 @@ import com.eeat.userservice.model.Order;
 import com.eeat.userservice.model.UserPlataform;
 import com.eeat.userservice.service.MessageService;
 import com.eeat.userservice.service.UserService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -70,11 +71,12 @@ public class UserController {
 
     @PostMapping(path = "/order/create")
     @ResponseStatus(HttpStatus.CREATED)
+    @CircuitBreaker(name = "createOrderCB", fallbackMethod = "createOrderFallBack")
     public void createOrder(@RequestBody Order order) {
-        try {
-            userService.createOrder(order);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, messageService.get("service.off"));
-        }
+        userService.createOrder(order);
+    }
+
+    public void createOrderFallBack(Throwable e) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, messageService.get("service.off"));
     }
 }
