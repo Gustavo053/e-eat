@@ -9,6 +9,8 @@ eureka:
       prefer-ip-address: true
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: api-gateway
   cloud:
@@ -17,8 +19,12 @@ spring:
         - id: user-service
           uri: lb://user-service
           predicates:
-          - Path=/user/**
+            - Path=/user/**
+        - id: api-auth
+          uri: lb://api-auth
+          predicates:
+            - Path=/auth/**
         - id: restaurant-service
           uri: lb://restaurant-service
           predicates:
-          - Path=/restaurant/**
+            - Path=/restaurant/**

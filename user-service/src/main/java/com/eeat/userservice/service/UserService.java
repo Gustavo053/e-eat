@@ -4,6 +4,7 @@ import com.eeat.userservice.model.Order;
 import com.eeat.userservice.model.UserPlataform;
 import com.eeat.userservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,8 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private RestaurantService restaurantService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public List<UserPlataform> findAll() {
         return userRepository.findAll();
@@ -25,6 +28,7 @@ public class UserService {
     }
 
     public UserPlataform save(UserPlataform user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 

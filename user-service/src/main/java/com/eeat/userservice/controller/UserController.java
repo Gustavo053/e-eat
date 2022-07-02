@@ -1,8 +1,10 @@
 package com.eeat.userservice.controller;
 
+import com.eeat.userservice.DTO.UserCredentialsDTO;
 import com.eeat.userservice.model.Order;
 import com.eeat.userservice.model.UserPlataform;
 import com.eeat.userservice.service.MessageService;
+import com.eeat.userservice.service.UserCredentialsService;
 import com.eeat.userservice.service.UserService;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -20,6 +20,8 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserCredentialsService userCredentialsService;
     @Autowired
     private MessageService messageService;
 
@@ -42,6 +44,13 @@ public class UserController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public UserPlataform save(@RequestBody UserPlataform user) {
+        UserCredentialsDTO userCredentialsDTO = UserCredentialsDTO.builder()
+                .login(user.getLogin())
+                .password(user.getPassword())
+                .enable(true)
+                .build();
+
+        userCredentialsService.createUserCredentials(userCredentialsDTO);
         return userService.save(user);
     }
 
