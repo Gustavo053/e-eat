@@ -85,7 +85,17 @@ public class UserController {
         userService.createOrder(order);
     }
 
+    @GetMapping(path = "/order/{id}")
+    @CircuitBreaker(name = "findOrderCB", fallbackMethod = "findOrderFallBack")
+    public Order findOrderById(@PathVariable Long id) {
+        return userService.findOrderById(id);
+    }
+
     public void createOrderFallBack(Throwable e) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, messageService.get("service.off"));
+    }
+
+    public Order findOrderFallBack(Throwable e) {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, messageService.get("service.off"));
     }
 }

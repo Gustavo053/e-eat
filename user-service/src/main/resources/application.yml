@@ -26,3 +26,6 @@ resilience4j:
       createOrderCB:
         slidingWindowSize: 8
         minimumNumberOfCalls: 4
+      findOrderCB:
+        slidingWindowSize: 8
+        minimumNumberOfCalls: 4

@@ -39,4 +39,8 @@ public class UserService {
     public void createOrder(Order order) {
         restaurantService.createOrder(order);
     }
+
+    public Order findOrderById(Long id) {
+        return restaurantService.findOrderById(id);
+    }
 }

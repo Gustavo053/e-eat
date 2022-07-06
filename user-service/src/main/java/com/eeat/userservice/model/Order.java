@@ -9,4 +9,5 @@ public class Order {
     private Long restaurantId;
     private Long userId;
     private Long addressId;
+    private EOrderStatus status;
 }

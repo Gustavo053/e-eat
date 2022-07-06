@@ -16,8 +16,10 @@ public class OrderUser {
     private Long id;
     private String orderContent;
     private String complement;
-
     private Long restaurantId;
     private Long userId;
     private Long addressId;
+
+    @Enumerated(EnumType.STRING)
+    private EOrderStatus status;
 }
