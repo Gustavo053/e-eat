@@ -3,6 +3,7 @@ package com.eeat.userservice.service;
 import com.eeat.userservice.model.Order;
 import com.eeat.userservice.model.UserPlataform;
 import com.eeat.userservice.repository.UserRepository;
+import com.eeat.userservice.service.kafka.ProducerOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ public class UserService {
     private RestaurantService restaurantService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private ProducerOrderService producerOrderService;
 
     public List<UserPlataform> findAll() {
         return userRepository.findAll();
@@ -36,8 +39,8 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public void createOrder(Order order) {
-        restaurantService.createOrder(order);
+    public void createOrder(Order order) throws Exception {
+        producerOrderService.send(order);
     }
 
     public Order findOrderById(Long id) {

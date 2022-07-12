@@ -45,6 +45,8 @@ public class AuthenticationFilter implements GlobalFilter {
                 if (username == null || username.trim().equals("")) {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid token");
                 }
+            } else {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid token");
             }
         }
 

@@ -9,6 +9,19 @@ spring:
       ddl-auto: update
   application:
     name: user-service
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:9092
+      group-id: orders_id
+
+auto:
+  create:
+    topics:
+      enable: true
+
+topic:
+  name:
+    producer: queueOrdersUsers
 
 server:
   port: 6262
@@ -23,9 +36,6 @@ eureka:
 resilience4j:
   circuitbreaker:
     instances:
-      createOrderCB:
-        slidingWindowSize: 8
-        minimumNumberOfCalls: 4
       findOrderCB:
         slidingWindowSize: 8
         minimumNumberOfCalls: 4

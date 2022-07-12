@@ -9,6 +9,15 @@ spring:
       ddl-auto: update
   application:
     name: restaurant-service
+  kafka:
+    consumer:
+      bootstrap-servers: 127.0.0.1:9092
+      group-id: orders_id
+      auto-offset-reset: earliest
+
+topic:
+  name:
+    consumer: queueOrdersUsers
 
 server:
   port: 6060

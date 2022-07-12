@@ -80,19 +80,18 @@ public class UserController {
 
     @PostMapping(path = "/order/create")
     @ResponseStatus(HttpStatus.CREATED)
-    @CircuitBreaker(name = "createOrderCB", fallbackMethod = "createOrderFallBack")
     public void createOrder(@RequestBody Order order) {
-        userService.createOrder(order);
+        try {
+            userService.createOrder(order);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, messageService.get("order.error-process"));
+        }
     }
 
     @GetMapping(path = "/order/{id}")
     @CircuitBreaker(name = "findOrderCB", fallbackMethod = "findOrderFallBack")
     public Order findOrderById(@PathVariable Long id) {
         return userService.findOrderById(id);
-    }
-
-    public void createOrderFallBack(Throwable e) {
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, messageService.get("service.off"));
     }
 
     public Order findOrderFallBack(Throwable e) {
