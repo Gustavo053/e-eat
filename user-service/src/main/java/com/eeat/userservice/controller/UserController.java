@@ -51,6 +51,7 @@ public class UserController {
                 .build();
 
         userCredentialsService.createUserCredentials(userCredentialsDTO);
+        user.setPassword(null);
         return userService.save(user);
     }
 

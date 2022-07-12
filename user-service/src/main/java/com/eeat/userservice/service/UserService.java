@@ -31,7 +31,6 @@ public class UserService {
     }
 
     public UserPlataform save(UserPlataform user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
