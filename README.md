@@ -10,7 +10,7 @@ Application built with a microservices architecture for a food delivery through 
 - restaurant-service: Responsible for restaurant services;
 - user-service: Responsible for user services.
 
-# Technologys
+# Technologies
 
 - [Spring Framework](https://spring.io/);
 - [Spring Cloud](https://spring.io/projects/spring-cloud);
