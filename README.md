@@ -14,14 +14,18 @@ A simple restaurant delivery API.
 
 Below are some of the principal system diagrams.
 
-### Overall system diagram
+### Overall system diagram:
 
 <img src="./__readme/diagram.drawio.png" />
 
-### User creation diagram
+### User creation diagram:
 
 <img src="./__readme/create-credentials.drawio.png" />
 
-### Order diagram
+### Order diagram:
 
 <img src="./__readme/create-order.drawio.png" />
+
+### Developed by:
+
+[Gustavo Pereira da Fonseca](https://www.linkedin.com/in/gustavo-pereira053/)
