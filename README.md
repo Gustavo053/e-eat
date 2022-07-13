@@ -26,6 +26,6 @@ Below are some of the principal system diagrams.
 
 <img src="./__readme/create-order.drawio.png" />
 
-### Developed by:
+## Developed by:
 
 [Gustavo Pereira da Fonseca](https://www.linkedin.com/in/gustavo-pereira053/)
