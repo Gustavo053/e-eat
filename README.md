@@ -1,6 +1,6 @@
 # e-eat
 
-A simple restaurant delivery API.
+Application built with a microservices architecture for a food delivery through several restaurants.
 
 ## System parts
 
@@ -9,6 +9,13 @@ A simple restaurant delivery API.
 - eureka-server: Responsible for performing load balancing and registering services for communication;
 - restaurant-service: Responsible for restaurant services;
 - user-service: Responsible for user services.
+
+# Technologys
+
+- [Spring Framework](https://spring.io/);
+- [Spring Cloud](https://spring.io/projects/spring-cloud);
+- [PostgreSQL](https://www.postgresql.org/);
+- [Apache Kafka](https://kafka.apache.org/);
 
 ## Diagrams
 
